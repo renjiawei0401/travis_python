@@ -4,13 +4,28 @@ language:
   - python
 
 python:
-  - 3.6
+  - 2.7
+  - 3.4
+  - 3.5
 
+branches:
+  only:
+  - master
+  - develop
+  
 install:
   - pip install pytest pytest-cov python-coveralls
 
 script:
-  - py.test -vv main.py;
-   
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]];
+    then py.test -vv main.py --cov main;
+    else py.test -vv main.py;
+    fi
+
 after_success:
-  - coveralls;
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]];
+    then coveralls;
+    fi
+
+notifications:
+  email: false
