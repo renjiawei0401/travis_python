@@ -5,11 +5,6 @@ language:
 
 python:
   - 3.5
-
-branches:
-  only:
-  - master
-  - develop
   
 install:
   - pip install pytest pytest-cov python-coveralls
@@ -26,15 +21,18 @@ after_success:
     fi
 
 deploy:
-    # This is the deploy target for the native build (Linux and macOS)
-    # which generates the source tarball.
-    # This runs for each tag that is created and adds the corresponding files.
-    - provider: releases
-      api_key: "$GH_TOKEN"
-      file: 
-        - main.py
-
-      skip_cleanup: true
-      on:
-          all_branches: true
-          tags: true
+  # 部署到GitHub Release。
+  # 除此之外，Travis CI还支持发布到fir.im、AWS、Google App Engine等
+  provider: releases
+  # Github oauth token
+  api_key: "$GH_TOKEN"
+  # 部署文件路径；对于Android就部署生成的 apk 文件
+  file:
+    - main.py
+  # 避免 Travis CI在部署之前清空生成的APK文件
+  skip_cleanup: true
+  # 发布时机
+  on:
+    # tags设置为true表示只有在有tag的情况下才部署
+    tags: true
+    all_branches: true
