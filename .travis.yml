@@ -31,9 +31,8 @@ deploy:
     # This runs for each tag that is created and adds the corresponding files.
     - provider: releases
       api_key: "$GH_TOKEN"
-      overwrite: true
-      file_glob: true
-      file: main.py
+      file: 
+        - main.py
       #部署完成会清空
       skip_cleanup: true
       on:
