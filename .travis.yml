@@ -19,7 +19,6 @@ script:
     then py.test -vv main.py --cov main;
     else py.test -vv main.py;
     fi
-
 after_success:
   - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]];
     then coveralls;
