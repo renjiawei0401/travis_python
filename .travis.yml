@@ -5,12 +5,7 @@ language:
 
 python:
   - 3.5
-
-branches:
-  only:
-  - master
-  - develop 
-  
+ 
 install:
   - pip install pytest pytest-cov python-coveralls
 
