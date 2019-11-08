@@ -4,8 +4,6 @@ language:
   - python
 
 python:
-  - 2.7
-  - 3.4
   - 3.5
 
 branches:
@@ -27,5 +25,18 @@ after_success:
     then coveralls;
     fi
 
-notifications:
-  email: false
+deploy:
+    # This is the deploy target for the native build (Linux and macOS)
+    # which generates the source tarball.
+    # This runs for each tag that is created and adds the corresponding files.
+    - provider: releases
+      api_key: "$GH_TOKEN"
+
+      overwrite: true
+      file_glob: true
+      file: main.py
+      #部署完成会清空
+      skip_cleanup: true
+      on:
+          all_branches: true
+          tags: true
