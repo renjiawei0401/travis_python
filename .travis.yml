@@ -33,7 +33,7 @@ deploy:
       api_key: "$GH_TOKEN"
       file: 
         - main.py
-      #部署完成会清空
+
       skip_cleanup: true
       on:
           all_branches: true
