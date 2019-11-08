@@ -10,6 +10,7 @@ branches:
   only:
   - master
   - develop 
+
 install:
   - pip install pytest pytest-cov python-coveralls
 
@@ -35,7 +36,6 @@ deploy:
     - main.py
   # 避免 Travis CI在部署之前清空生成的APK文件
   skip_cleanup: true
-  # 发布时机
   on:
     # tags设置为true表示只有在有tag的情况下才部署
     tags: true
